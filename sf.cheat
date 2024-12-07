@@ -1,0 +1,7 @@
+% sf
+
+# List all orgs you've created or authenticated to
+sf org list
+
+# Authenticate a sandbox and set it as default
+sf org login web --instance-url https://<MyDomainName>--<SandboxName>.sandbox.my.salesforce.com --set-default
