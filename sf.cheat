@@ -1,15 +1,18 @@
 % sf
-# Build artifact
-sf artifact build -b <baseref> -t <tagref> -f <folder> -i <ignorefile>
-
-# Raise PAM
+# PAM: raise access request
 sf access request
 
-# List all orgs you've created or authenticated to
+# config: set target org
+sf config set target-org <targetorgname>
+
+# org: list all orgs you've created or authenticated to
 sf org list
 
-# Authenticate a sandbox and set it as default
+# org: authenticate a sandbox and set it as default
 sf org login web --instance-url https://<MyDomainName>--<SandboxName>.sandbox.my.salesforce.com --set-default
 
-# Generate xschema
+# xschema: generate schema
 sf xschema generate -a <assigneeusername> -e <exclusionfile> -n <objectname> -f <outputdir>
+
+# artifact: Build artifact
+sf artifact build -b <baseref> -t <tagref> -f <folder> -i <ignorefile>
