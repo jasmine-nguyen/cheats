@@ -1,0 +1,7 @@
+% hidutil
+
+# Disable capslock delay
+hidutil property --set '{"CapsLockDelayOverride":0}'
+
+# Disable font smoothing
+defaults -currentHost write -g AppleFontSmoothing -int 0
