@@ -5,3 +5,7 @@ hidutil property --set '{"CapsLockDelayOverride":0}'
 
 # Disable font smoothing
 defaults -currentHost write -g AppleFontSmoothing -int 0
+
+# Reduce key repeat
+defaults write -g KeyRepeat -int 1
+defaults write -g InitialKeyRepeat -int 10
