@@ -1,6 +1,6 @@
 % sf
-# PAM: raise access request
-sf access request
+# apex: generate new apex class
+sf apex generate class --name <classname> --output-dir <output-dir>
 
 # config: set target org
 sf config set target-org <targetorgname>
@@ -11,8 +11,8 @@ sf org list
 # org: authenticate a sandbox and set it as default
 sf org login web --instance-url https://<MyDomainName>--<SandboxName>.sandbox.my.salesforce.com --set-default
 
-# xschema: generate schema
-sf xschema generate -a <assigneeusername> -e <exclusionfile> -n <objectname> -f <outputdir>
+# project: deploy apex class
+sf project deploy start --metadata 'ApexClass:<classname>' --ignore-conflicts
 
-# artifact: Build artifact
-sf artifact build -b <baseref> -t <tagref> -f <folder> -i <ignorefile>
+# project: retrieve metadata
+sf project retrieve start --metadata <metadata> -o <org>
