@@ -13,6 +13,9 @@ sf org login web --instance-url https://<MyDomainName>--<SandboxName>.sandbox.my
 
 # project: deploy apex class
 sf project deploy start --metadata 'ApexClass:<classname>' --ignore-conflicts
+sf project deploy start --metadata 'OmniScript:<classname>' --ignore-conflicts
 
 # project: retrieve metadata
 sf project retrieve start --metadata <metadata> -o <org>
+$ metadata: printf "ApexClass\nOmniScript\nCustomField" --- --query "ApexClass"
+$ org: printf "WSVJAS\nWSVLAPST"
