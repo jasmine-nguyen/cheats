@@ -5,17 +5,29 @@ sf apex generate class --name <classname> --output-dir <output-dir>
 # config: set target org
 sf config set target-org <targetorgname>
 
+# org: login sandbox
+sf org login web --alias <alias> --instance-url https://<domain>.sandbox.my.salesforce.com
+
 # org: list all orgs you've created or authenticated to
 sf org list
 
 # org: authenticate a sandbox and set it as default
 sf org login web --instance-url https://<MyDomainName>--<SandboxName>.sandbox.my.salesforce.com --set-default
 
-# project: deploy apex class
-sf project deploy start --metadata 'ApexClass:<classname>' --ignore-conflicts
-sf project deploy start --metadata 'OmniScript:<classname>' --ignore-conflicts
+# project: deploy metadata by metadatatype
+sf project deploy start --metadata <metadatatype>:<metadataname> -o <org> --ignore-conflicts
+$ metadatatype: printf "ApexClass\nOmniScript\nCustomField\nOmniDataTransform\nOmniIntegrationProcedure" --- --query "ApexClass"
+$ org: printf "WSVJAS\nWSVLAPST"
 
-# project: retrieve metadata
-sf project retrieve start --metadata <metadata> -o <org>
-$ metadata: printf "ApexClass\nOmniScript\nCustomField" --- --query "ApexClass"
+# project: deploy metadata by source-dir
+sf project deploy start --source-dir <source-dir> -o <org> --ignore-conflicts
+$ org: printf "WSVJAS\nWSVLAPST"
+
+# project: retrieve metadata by metadatatype
+sf project retrieve start --metadata <metadatatype>:<metadataname> -o <org> --ignore-conflicts
+$ metadatatype: printf "ApexClass\nOmniScript\nCustomField\nOmniDataTransform\nOmniIntegrationProcedure" --- --query "ApexClass"
+$ org: printf "WSVJAS\nWSVLAPST"
+
+# project: retrieve metadata by source-dir
+sf project retrieve start --source-dir <source-dir> -o <org> --ignore-conflicts
 $ org: printf "WSVJAS\nWSVLAPST"
