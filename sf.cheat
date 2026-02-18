@@ -12,11 +12,11 @@ sf org login web --alias <alias> --instance-url https://<domain>.sandbox.my.sale
 sf org list
 
 # org: authenticate a sandbox and set it as default
-sf org login web --instance-url https://<MyDomainName>--<SandboxName>.sandbox.my.salesforce.com --set-default
+sf org login web --instance-url https://<MyDomainName>--<SandboxName>.sandbox.my.salesforce.com --set-default --alias <SandboxName>
 
 # project: deploy metadata by metadatatype
 sf project deploy start --metadata <metadatatype>:<metadataname> -o <org> --ignore-conflicts
-$ metadatatype: printf "ApexClass\nOmniScript\nCustomField\nOmniDataTransform\nOmniIntegrationProcedure" --- --query "ApexClass"
+$ metadatatype: printf "ApexClass\nCustomField\nOmniDataTransform\nOmniIntegrationProcedure\nOmniScript" --- --query "ApexClass"
 $ org: printf "WSVJAS\nWSVLAPST"
 
 # project: deploy metadata by source-dir
@@ -25,7 +25,12 @@ $ org: printf "WSVJAS\nWSVLAPST"
 
 # project: retrieve metadata by metadatatype
 sf project retrieve start --metadata <metadatatype>:<metadataname> -o <org> --ignore-conflicts
-$ metadatatype: printf "ApexClass\nOmniScript\nCustomField\nOmniDataTransform\nOmniIntegrationProcedure" --- --query "ApexClass"
+$ metadatatype: printf "ApexClass\nCustomField\nOmniDataTransform\nOmniIntegrationProcedure\nOmniScript" --- --query "ApexClass"
+$ org: printf "WSVJAS\nWSVLAPST"
+
+# project: retrieve all CustomMetadata records of a specific type
+sf org list metadata -m CustomMetadata -o <org> | grep "<mdtname>" | awk '{print $3}' | xargs -I{} echo --metadata "CustomMetadata:{}" | xargs sf project retrieve start -o <org> --ignore-conflicts
+$ mdtname: printf "Licence_Fee_Type"
 $ org: printf "WSVJAS\nWSVLAPST"
 
 # project: retrieve metadata by source-dir
