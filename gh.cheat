@@ -1,0 +1,9 @@
+# auth login
+gh auth login --hostname github.com
+
+# auth status
+gh auth status
+
+# auth switch user
+gh auth switch --user <username>
+
